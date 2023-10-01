@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Brand>
+
+<h2>Brand List</h2>
+<a class="btn btn-info" asp-action="Upsert">Add Brand</a>
+
+<br />
+<br />
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>Brand Name</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.BrandName</td>
+                <td><img style="width: 100px" src="@WC.BrandImage@obj.BrandImage" /></td>
+                <td>
+                    <a class="btn btn-warning" asp-action="Upsert"  asp-route-id="@obj.Id">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete"  asp-route-id="@obj.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Country>
+
+<h2>Tax List</h2>
+<a asp-action="Upsert" class="btn btn-info">Add Country</a>
+<br />
+<br />
+
+<table class="table table-striped bodrer">
+    <thead>
+        <tr>
+            <th>Coutry Name</th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CountryName</td>
+                <td>
+                    <a asp-action="Upsert" class="btn btn-info" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Delete" class="btn btn-dark" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

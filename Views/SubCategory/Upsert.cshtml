@@ -1,0 +1,41 @@
+﻿@model SubCategoryVM
+
+@{
+    var title = "Add subcategory";
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    @if (Model.SubCategory.Id != 0)
+    {
+        title = "Edit Sub category";
+        <input asp-for="SubCategory.Id" hidden />
+    }
+
+    <h2>@title</h2>
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="SubCategory.Name"></label>
+        <input class="form-control" asp-for="SubCategory.Name"/>
+        <span asp-validation-for="SubCategory.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="SubCategory.Cid"></label>
+        <select class="form-control" asp-for="SubCategory.Cid" asp-items="@Model.CategoryList">
+            <option disabled selected>---select----</option>
+        </select>
+    </div>
+    <div class="form-group">
+        @if (Model.SubCategory.Id != 0)
+        {
+            <input type="submit" class="btn btn-warning" value="Update" />
+        }
+        else
+        {
+            <input type="submit" class="btn btn-success" value="Add" />
+
+        }
+    </div>
+</form>

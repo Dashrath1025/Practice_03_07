@@ -1,0 +1,43 @@
+﻿@model Brand
+
+<h2 class="text-info"> @(Model.Id != 0? "Update" : "Create") Brand</h2>
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.Id != 0)
+    {
+
+        <input asp-for="Id" hidden />
+    }
+
+    <div class="form-group">
+        <label asp-for="BrandName"></label>
+        <input asp-for="BrandName" class="form-control" />
+        <span asp-validation-for="BrandName"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BrandImage"></label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+    <div class="form-group">
+        @if (Model.Id == 0)
+        {
+            <input type="submit" class="btn btn-info" value="Add" />
+        }
+        else
+        {
+            <input type="submit" class="btn btn-warning" value="Update"/>
+
+        }
+
+        <a class="btn btn-dark" asp-action="Index">Back</a>
+
+        <br />
+        <br />
+        <br />
+        @if (Model.Id != 0)
+        {
+            <img src="@WC.BrandImage@Model.BrandImage" style="width:100px"/>
+        }
+    </div>
+
+</form>

@@ -1,0 +1,33 @@
+﻿@model Country
+
+@{
+    var t = "Add Country";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.Id != 0)
+    {
+        t = "Edit tax";
+        <input asp-for="@Model.Id" hidden />
+    }
+
+    <h2>@t</h2>
+
+    <div class="form-group">
+        <label asp-for="CountryName"></label>
+        <input asp-for="CountryName" class="form-control" />
+        <span asp-validation-for="CountryName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @if (Model.Id != 0)
+        {
+            <input type="submit" class="btn btn-warning" value="Update" />
+        }
+        else
+        {
+            <input type="submit" class="btn btn-success" value="Add" />
+        }
+        <a class="btn btn-dark" asp-action="Index">Cancel</a>
+    </div>
+
+</form>

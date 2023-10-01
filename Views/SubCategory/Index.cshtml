@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SubCategory>
+
+<h2>SubCategoryList</h2>
+
+<div class="text-right">
+    <a class="btn btn-info" asp-action="Upsert">Add</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-action="Upsert" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                        <a asp-action="Delete" onclick="return confirm('are you sure want to delete?')" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>

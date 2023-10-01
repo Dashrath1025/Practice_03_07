@@ -1,0 +1,71 @@
+﻿@model CityVM
+
+
+@{
+    var title = "Add city";
+
+}
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.City.Id != 0)
+    {
+        title = "Edit Product";
+        <input asp-for="City.Id" hidden />
+    }
+    <div class="border p-3">
+
+        <div class="form-group ">
+            <h2 class="text-info pl-3">@title</h2>
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="City.CityName"></label>
+
+            <input asp-for="City.CityName" class="form-control" />
+            <span asp-validation-for="City.CityName" class="text-danger"></span>
+
+
+        </div>
+
+        <div class="form-group ">
+
+            <label asp-for="City.CountryId"></label>
+
+
+            <select asp-for="City.CountryId" asp-items="@Model.CountryList" class="form-control">
+                <option disabled selected>--Select Category--</option>
+            </select>
+            <span asp-validation-for="City.CountryId" class="text-danger"></span>
+
+
+        </div>
+
+        <div class="form-group">
+
+
+            @if (Model.City.Id != 0)
+            {
+                //update
+                <input type="submit" class="btn btn-info" value="Update" />
+            }
+            else
+            {
+                //create
+                <input type="submit" onclick="return validateInput()" class="btn btn-primary" value="Create" />
+            }
+
+
+
+            <a asp-action="Index" class="btn btn-dark"><i class="fas fa-sign-out-alt"></i> Back</a>
+
+
+        </div>
+
+
+    </div>
+
+
+</form>
+
+
